@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Day from "./Day";
+import Day from "./day.js";
 
-export default class month extends Component {
+export default class Month extends Component {
   render() {
     return <Day />;
   }
