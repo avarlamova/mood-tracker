@@ -1,8 +1,8 @@
 import "./App.css";
-import Month from "./components/month.js";
+import Year from "./components/year.js";
 
 function App() {
-  return <Month />;
+  return <Year />;
 }
 
 export default App;

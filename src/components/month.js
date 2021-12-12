@@ -3,6 +3,11 @@ import Day from "./day.js";
 
 export default class Month extends Component {
   render() {
-    return <Day />;
+    return (
+      <div>
+        In another month...
+        <Day />
+      </div>
+    );
   }
 }
