@@ -1,0 +1,10 @@
+.month-container {
+  display: grid;
+  grid-template-columns: repeat(32, 1fr);
+  grid-auto-flow: row;
+}
+
+.month-item {
+  display: grid;
+  background-color: turquoise;
+}
