@@ -9,13 +9,13 @@ export default class Month extends Component {
       .map((x, i) => i)
       .filter((i) => i > 0);
 
+    // const year = new Date().getFullYear();
+
     return (
       <div>
         <div className="year-container">
           {months.map((month, index) => (
             <div key={index} className="year-item">
-              {" "}
-              {month}
               <div>
                 <Day month={month} />{" "}
               </div>

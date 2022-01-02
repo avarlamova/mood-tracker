@@ -7,4 +7,5 @@
 .month-item {
   display: grid;
   background-color: turquoise;
+  border: 1px solid #fff;
 }

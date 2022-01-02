@@ -5,8 +5,7 @@ export default class Year extends Component {
   render() {
     return (
       <div>
-        In a year...
-        <Month />
+        year 2022 <Month />
       </div>
     );
   }
