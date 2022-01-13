@@ -6,6 +6,14 @@
 
 .month-item {
   display: grid;
-  background-color: turquoise;
+  /* background-color: turquoise; */
   border: 1px solid #fff;
+}
+
+.day-default {
+  cursor: pointer;
+}
+
+.weekDay {
+  background-color: red;
 }
