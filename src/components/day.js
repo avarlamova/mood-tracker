@@ -11,10 +11,11 @@ export default class Day extends Component {
     id: "2022-" + this.props.month + "-",
   };
 
-  handleClick(e) {
-    let id = e.target.id; // day id
-    console.log(id);
-  }
+  // handleDayClick(e) {
+  //   let id = e.target.id; // day id
+
+  //   console.log(id);
+  // }
 
   render() {
     let { month } = this.props;
@@ -29,24 +30,16 @@ export default class Day extends Component {
 
     initialDays.unshift(month);
 
-    // detect today
-
-    // initialDays.map((el) => {
-    //   let dayOfWeek = new Date(el + "-" + month + "-2022").getDay();
-    //   if (dayOfWeek % 6 === 0)
-    //     this.setState(({ computedStyle }) => (computedStyle += "weekDay"));
-    //   return el;
-    // });
-
     return (
       <div className="month-container">
         {initialDays.map((day, index) => (
           <div
-            onClick={this.handleClick}
+            onClick={() => {
+              this.props.handleDayClick();
+            }}
             id={"2022-" + month + "-" + (day > 9 ? day : "0" + day)}
             key={index}
             className={"month-item " + this.state.computedStyle}
-            //weekDay={new Date(day + "-" + month + "-2022").getDay()}
           >
             {day}
           </div>

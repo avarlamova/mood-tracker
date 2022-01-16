@@ -5,16 +5,24 @@ import React, { Component } from "react";
 
 export default class App extends Component {
   state = {
-    showEditWindow: false,
+    editWindowIsShown: false,
   };
 
+  showEditWindow() {
+    this.setState({ editWindowIsShown: true });
+  }
+
   render() {
-    const { showEditWindow } = this.state;
+    const { editWindowIsShown } = this.state;
 
     return (
       <div>
-        <Year />
-        {showEditWindow ? <EditWindow /> : ""}
+        <Year
+          openEditWindow={() => {
+            this.showEditWindow();
+          }}
+        />
+        {editWindowIsShown ? <EditWindow /> : ""}
       </div>
     );
   }

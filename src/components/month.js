@@ -3,6 +3,9 @@ import Day from "./day.js";
 import "./month.css";
 
 export default class Month extends Component {
+  // emitDayClick() {
+  //   console.log("month");
+  // }
   render() {
     const months = Array(13)
       .fill()
@@ -17,7 +20,7 @@ export default class Month extends Component {
           {months.map((month, index) => (
             <div key={index} className="year-item">
               <div>
-                <Day month={month} />{" "}
+                <Day handleDayClick={this.props.openEditWindow} month={month} />{" "}
               </div>
             </div>
           ))}
