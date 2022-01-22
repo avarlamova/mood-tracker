@@ -6,23 +6,32 @@ import React, { Component } from "react";
 export default class App extends Component {
   state = {
     editWindowIsShown: false,
+    message: "Sup guys",
   };
 
   showEditWindow() {
     this.setState({ editWindowIsShown: true });
   }
 
+  handleClose = () => {
+    this.setState({ editWindowIsShown: false });
+  };
+
   render() {
-    const { editWindowIsShown } = this.state;
+    const { editWindowIsShown, message } = this.state;
 
     return (
       <div>
+        {editWindowIsShown ? (
+          <EditWindow message={message} handleClose={this.handleClose} />
+        ) : (
+          ""
+        )}
         <Year
           openEditWindow={() => {
             this.showEditWindow();
           }}
         />
-        {editWindowIsShown ? <EditWindow /> : ""}
       </div>
     );
   }

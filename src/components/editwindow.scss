@@ -1,22 +1,19 @@
-body {
-  height: 100%;
-}
-body {
+.modal {
+  min-height: 100%;
   background: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.modal {
-  width: 500px;
+  width: 800px;
   background: white;
   border: 1px solid #ccc;
   transition: 1.1s ease-out;
-  box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2);
+  // box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2);
   filter: blur(0);
   transform: scale(1);
   opacity: 1;
   visibility: visible;
+  margin: 0 auto;
 
   & h2 {
     border-bottom: 1px solid rgb(80, 74, 74);
@@ -36,10 +33,6 @@ body {
       padding: 0.5rem 1rem;
       font-size: 0.8rem;
       line-height: 1;
-    }
-
-    & #centered-toggle-button {
-      position: absolute;
     }
   }
   & .content {
