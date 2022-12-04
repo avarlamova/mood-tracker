@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Day from "./day.js";
+import Day from "./Day.tsx";
 import "./month.css";
 
 export default class Month extends Component {
@@ -9,7 +9,7 @@ export default class Month extends Component {
   render() {
     const months = Array(13)
       .fill()
-      .map((x, i) => i)
+      .map((i) => i)
       .filter((i) => i > 0);
 
     // const year = new Date().getFullYear();

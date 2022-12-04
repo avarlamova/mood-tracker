@@ -1,6 +1,6 @@
 import "./App.css";
-import Year from "./components/year.js";
-import EditWindow from "./components/editwindow.js";
+// import Year from "./components/year.js";
+import EditWindow from "./components/EditWindow";
 import React, { Component } from "react";
 
 export default class App extends Component {
@@ -27,11 +27,11 @@ export default class App extends Component {
         ) : (
           ""
         )}
-        <Year
+        {/* <Year
           openEditWindow={() => {
             this.showEditWindow();
           }}
-        />
+        /> */}
       </div>
     );
   }

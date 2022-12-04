@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 
 import "./day.css";
 
-export default class Day extends Component {
-  state = {
-    daysCount: moment("2022-" + this.props.month, "YYYY-MM").daysInMonth(),
-    computedStyle: "day-default",
-    today: moment().format("YYYY-MM-DD"),
-    id: "2022-" + this.props.month + "-",
-  };
+const Day = (month:number) => {
+  // state = {
+  //   daysCount: moment("2022-" + this.props.month, "YYYY-MM").daysInMonth(),
+  //   computedStyle: "day-default",
+  //   today: moment().format("YYYY-MM-DD"),
+  //   id: "2022-" + this.props.month + "-",
+  // };
 
   // handleDayClick(e) {
   //   let id = e.target.id; // day id
@@ -17,12 +17,10 @@ export default class Day extends Component {
   //   console.log(id);
   // }
 
-  render() {
-    let { month } = this.props;
-    if (month < 10) month = "0" + month;
+    // if (month < 10) month = "0" + month;
 
     const initialDays = Array(31)
-      .fill()
+      .fill(0)
       .map((el, i) => {
         return i;
       })
@@ -34,17 +32,18 @@ export default class Day extends Component {
       <div className="month-container">
         {initialDays.map((day, index) => (
           <div
-            onClick={() => {
-              this.props.handleDayClick();
-            }}
+            // onClick={() => {
+            //   this.props.handleDayClick();
+            // }}
             id={"2022-" + month + "-" + (day > 9 ? day : "0" + day)}
             key={index}
-            className={"month-item " + this.state.computedStyle}
+            className={index === 0 ? "month-name" : "month-item"}
           >
             {day}
           </div>
         ))}
       </div>
     );
-  }
 }
+
+export default Day
