@@ -1,38 +1,23 @@
 import "./App.css";
-// import Year from "./components/year.js";
+import Year from "./components/Year";
 import EditWindow from "./components/EditWindow";
-import React, { Component } from "react";
+import { useState } from "react";
 
-export default class App extends Component {
-  state = {
-    editWindowIsShown: false,
-    message: "Sup guys",
-  };
+const App = () => {
+  const [editWindowShown, setEditWindowShown] = useState(false);
+  const message = 'test'
 
-  showEditWindow() {
-    this.setState({ editWindowIsShown: true });
-  }
-
-  handleClose = () => {
-    this.setState({ editWindowIsShown: false });
-  };
-
-  render() {
-    const { editWindowIsShown, message } = this.state;
-
-    return (
-      <div>
-        {editWindowIsShown ? (
-          <EditWindow message={message} handleClose={this.handleClose} />
-        ) : (
-          ""
-        )}
-        {/* <Year
-          openEditWindow={() => {
-            this.showEditWindow();
-          }}
-        /> */}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {editWindowShown ? (
+        <EditWindow message={message} handleClose={()=>setEditWindowShown(false)} />
+      ) : (
+        ""
+      )}
+      <Year
+      />
+    </div>
+  );
 }
+
+export default App
