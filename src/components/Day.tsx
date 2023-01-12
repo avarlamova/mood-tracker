@@ -1,9 +1,19 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React, { FC, useContext } from "react";
+import { ModalContext } from "../contexts/ModalContext";
 
-import "./day.css";
+import "./Day.scss";
 
-const Day = (month:number) => {
+type DayProps = {
+  dayNum: number;
+  isInMonth: boolean;
+};
+
+const Day: FC<DayProps> = ({ dayNum, isInMonth }) => {
+  const { modalShown, setModalShown } = useContext(ModalContext);
+
+  const handleClick = () => {
+    setModalShown();
+  };
   // state = {
   //   daysCount: moment("2022-" + this.props.month, "YYYY-MM").daysInMonth(),
   //   computedStyle: "day-default",
@@ -17,33 +27,22 @@ const Day = (month:number) => {
   //   console.log(id);
   // }
 
-    // if (month < 10) month = "0" + month;
+  // if (month < 10) month = "0" + month;
+  // const initialDays = Array(31)
+  //   .fill(0)
+  //   .map((el, i) => {
+  //     return i;
+  //   })
+  //   .filter((i) => i > 0);
 
-    const initialDays = Array(31)
-      .fill(0)
-      .map((el, i) => {
-        return i;
-      })
-      .filter((i) => i > 0);
+  // initialDays.unshift(month);
+  // console.log(initialDays)
 
-    initialDays.unshift(month);
-
-    return (
-      <div className="month-container">
-        {initialDays.map((day, index) => (
-          <div
-            // onClick={() => {
-            //   this.props.handleDayClick();
-            // }}
-            id={"2022-" + month + "-" + (day > 9 ? day : "0" + day)}
-            key={index}
-            className={index === 0 ? "month-name" : "month-item"}
-          >
-            {day}
-          </div>
-        ))}
-      </div>
-    );
-}
-
-export default Day
+  const computedStyle = isInMonth ? "day" : "day absent";
+  return (
+    <div className={computedStyle} onClick={handleClick}>
+      {dayNum}
+    </div>
+  );
+};
+export default Day;

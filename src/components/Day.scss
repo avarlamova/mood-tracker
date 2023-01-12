@@ -1,0 +1,11 @@
+.day {
+  border: 1px solid green;
+  font-size: 21px;
+  cursor: pointer;
+  // flex: 1 1 1em;
+}
+.absent {
+  background-color: gray;
+  cursor: default;
+  color: gray;
+}

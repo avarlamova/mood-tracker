@@ -1,0 +1,13 @@
+.emoji-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.list-item {
+  display: flex;
+  cursor: pointer;
+  padding: 5px 5px;
+  &:hover {
+    color: red;
+  }
+}
