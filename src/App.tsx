@@ -1,25 +1,31 @@
 import "./App.css";
 import Year from "./components/Year";
 import EditWindow from "./components/EditWindow";
-import { ModalProvider, useModalContext } from "./contexts/ModalContext";
+import ModalContext from "./contexts/ModalContext";
 import ModalWrapper from "./components/ModalWrapper";
+import { useContext, useState } from "react";
 
 const App = () => {
-  const { modalShown, setModalShown } = useModalContext();
-  console.log(setModalShown);
+  const [modalShown, setModalShown] = useState(false);
+
+  const openModal = () => {
+    setModalShown(true);
+  };
+
+  const closeModal = () => {
+    setModalShown(false);
+  };
+
   return (
-    <div>
-      <ModalProvider>
-        {modalShown && (
-          <ModalWrapper
-            children={<EditWindow />}
-            toggleModal={setModalShown(true)}
-          />
-        )}
-        <Year />
-        {modalShown}
-      </ModalProvider>
-    </div>
+    <ModalContext.Provider value={{ modalShown, openModal, closeModal }}>
+      {modalShown && (
+        <ModalWrapper
+          children={<EditWindow />}
+          toggleModal={console.log(true)}
+        />
+      )}
+      <Year />
+    </ModalContext.Provider>
   );
 };
 

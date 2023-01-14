@@ -12,8 +12,6 @@ const ModalWrapper: FC<ModalWrapperProps> = ({ children, toggleModal }) => {
     []
   );
 
-  console.log(containerElement);
-
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {

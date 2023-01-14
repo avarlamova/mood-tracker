@@ -1,18 +1,18 @@
 import InnerMenu from "./InnerMenu";
 import "./EditWindow.scss";
-import { ModalContext } from "../contexts/ModalContext";
+import ModalContext from "../contexts/ModalContext";
 import { useContext } from "react";
 
 const EditWindow = (message: any) => {
-  const { setModalShown } = useContext(ModalContext);
+  const { closeModal } = useContext(ModalContext);
   const saveChanges = () => {
-    // setModalShown(false);
+    closeModal();
     console.log("saveChanges");
   };
 
   const closeWindow = () => {
+    closeModal();
     console.log("closeWindow");
-    // setModalShown(false);
   };
 
   return (
