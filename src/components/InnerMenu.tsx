@@ -1,7 +1,12 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { DaysContext } from "../contexts/DaysContext";
 import "./InnerMenu.scss";
 
 const InnerMenu: FC = () => {
+  // const [selectedMood, setSelectedMood] = useState("");
+
+  const { chooseMood } = useContext(DaysContext);
+
   const moods = [
     { value: "Happy", emoji: "😊", id: "Happy" },
     { value: "Sad", emoji: "😔", id: "Sad" },
@@ -12,7 +17,7 @@ const InnerMenu: FC = () => {
   const renderedMoods = moods.map((el) => {
     const { value, emoji, id } = el;
     return (
-      <div key={id} className="emoji-list">
+      <div key={id} className="emoji-list" onClick={() => chooseMood(value)}>
         <div className="list-item">
           {emoji}
           {value}

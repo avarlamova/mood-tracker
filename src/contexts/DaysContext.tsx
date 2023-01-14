@@ -1,22 +1,60 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 type DaysContextProps = {
-  hasData: boolean;
+  selectedDay: UserDay;
   userDays: UserDay[];
+  chooseDay: any;
+  chooseMood: (mood: string) => void;
 };
 
 interface UserDay {
-  date: Date;
-  mood: string;
+  date?: { day: number; month: number; year: number };
+  mood?: string;
 }
 
 export const DaysContext = createContext<DaysContextProps>({
-  hasData: false,
+  selectedDay: {},
   userDays: [
     {
-      date: new Date("2023-01-01"),
+      date: { day: 1, month: 1, year: 2023 },
       mood: "sad",
     },
   ],
+  chooseDay: () => {},
+  chooseMood: () => {},
 });
+
+export const DaysContextProvider = ({ children }: any) => {
+  const [selectedDay, setSelectedDay] = useState({});
+  const chooseDay = (obj: { day: number; month: number; year: number }) => {
+    setSelectedDay({
+      date: obj,
+      mood: "",
+    });
+  };
+
+  const chooseMood = (mood: string) => {
+    setSelectedDay({ ...selectedDay, mood: mood });
+  };
+
+  console.log(selectedDay);
+  return (
+    <DaysContext.Provider
+      value={{
+        selectedDay: selectedDay,
+        userDays: [
+          {
+            date: { day: 1, month: 1, year: 2023 },
+            mood: "sad",
+          },
+        ],
+        chooseDay: chooseDay,
+        chooseMood: chooseMood,
+      }}
+    >
+      {children}
+    </DaysContext.Provider>
+  );
+};
+
 export const useDaysContext = () => useContext(DaysContext);

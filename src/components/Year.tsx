@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import ModalContext from "../contexts/ModalContext";
 import Month from "./Month";
 
 const Year = () => {
