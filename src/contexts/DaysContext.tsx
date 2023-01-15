@@ -2,9 +2,11 @@ import { createContext, useContext, useState } from "react";
 
 type DaysContextProps = {
   selectedDay: UserDay;
-  userDays: UserDay[];
+  userDays: UserDay[] | any[];
   chooseDay: any;
   chooseMood: (mood: string) => void;
+  saveDayChanges: () => void;
+  isInUserDays: () => boolean;
 };
 
 interface UserDay {
@@ -14,18 +16,16 @@ interface UserDay {
 
 export const DaysContext = createContext<DaysContextProps>({
   selectedDay: {},
-  userDays: [
-    {
-      date: { day: 1, month: 1, year: 2023 },
-      mood: "sad",
-    },
-  ],
+  userDays: [],
   chooseDay: () => {},
   chooseMood: () => {},
+  saveDayChanges: () => {},
+  isInUserDays: () => false,
 });
 
 export const DaysContextProvider = ({ children }: any) => {
-  const [selectedDay, setSelectedDay] = useState({});
+  const [selectedDay, setSelectedDay] = useState<UserDay>({});
+  const [userDays, setUserDays] = useState<UserDay[]>([]);
   const chooseDay = (obj: { day: number; month: number; year: number }) => {
     setSelectedDay({
       date: obj,
@@ -37,19 +37,30 @@ export const DaysContextProvider = ({ children }: any) => {
     setSelectedDay({ ...selectedDay, mood: mood });
   };
 
-  console.log(selectedDay);
+  const saveDayChanges = () => {
+    setUserDays([...userDays, selectedDay]);
+  };
+
+  const isInUserDays = () => {
+    return (
+      userDays.filter(
+        (day) =>
+          day.date?.day === selectedDay.date?.day &&
+          day.date?.month === selectedDay.date?.month &&
+          day.date?.year === selectedDay.date?.year
+      ).length > 0
+    );
+  };
+
   return (
     <DaysContext.Provider
       value={{
         selectedDay: selectedDay,
-        userDays: [
-          {
-            date: { day: 1, month: 1, year: 2023 },
-            mood: "sad",
-          },
-        ],
+        userDays: userDays,
         chooseDay: chooseDay,
         chooseMood: chooseMood,
+        saveDayChanges: saveDayChanges,
+        isInUserDays: isInUserDays,
       }}
     >
       {children}

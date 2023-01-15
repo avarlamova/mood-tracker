@@ -21,7 +21,6 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
       month: monthNum,
       year: new Date().getFullYear(),
     });
-    console.log(selectedDay);
   };
 
   const computedStyle = isInMonth ? "day" : "day absent";
