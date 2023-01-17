@@ -5,6 +5,7 @@ import ModalContext from "./contexts/ModalContext";
 import ModalWrapper from "./components/ModalWrapper";
 import { useState } from "react";
 import { DaysContextProvider } from "./contexts/DaysContext";
+import { MoodsContext } from "./contexts/MoodsContext";
 
 const App = () => {
   const [modalShown, setModalShown] = useState(false);

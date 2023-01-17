@@ -9,8 +9,7 @@ type MonthProps = {
   name: string;
 };
 const Month: FC<MonthProps> = ({ monthNum, name }) => {
-  //TODO заменить на текущий год
-  const year = "2022"; //new Date().getFullYear();
+  const year = new Date().getFullYear();
   const daysInMonth = moment(year + "-" + monthNum, "YYYY-MM").daysInMonth();
 
   const days = Array.from({ length: 31 }, (_, index) => {
@@ -29,9 +28,9 @@ const Month: FC<MonthProps> = ({ monthNum, name }) => {
   });
   return (
     <div>
-      <div className="year-container">
-        <div className="monthNum"> {name} </div>
-        {days}
+      <div className="monthContainer">
+        <div className="monthName"> {name} </div>
+        <div className="daysContainer">{days}</div>
       </div>
     </div>
   );

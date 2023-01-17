@@ -1,11 +1,25 @@
+$inactive: #d5d4df;
+$inactive-text: #a8a8a8;
+
 .day {
-  border: 1px solid green;
-  font-size: 21px;
   cursor: pointer;
-  // flex: 1 1 1em;
-}
-.absent {
-  background-color: gray;
-  cursor: default;
-  color: gray;
+  width: 50px;
+  height: 50px;
+  border: 1px solid $inactive;
+  border-left: 0;
+  border-bottom: 0;
+  color: #000000;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  &.absent {
+    color: $inactive-text;
+    background-color: $inactive;
+    cursor: default;
+  }
+
+  &:nth-child(1) {
+    border-left: 1px solid $inactive;
+  }
 }

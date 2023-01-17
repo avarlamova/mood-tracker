@@ -1,5 +1,6 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { DaysContext } from "../contexts/DaysContext";
+import { useMoodsContext } from "../contexts/MoodsContext";
 import "./InnerMenu.scss";
 
 const InnerMenu: FC = () => {
@@ -18,12 +19,7 @@ const InnerMenu: FC = () => {
     setSelectedMood(value);
   };
 
-  const moods = [
-    { value: "Happy", emoji: "😊", id: "Happy" },
-    { value: "Sad", emoji: "😔", id: "Sad" },
-    { value: "Anxious", emoji: "😰", id: "Anxious" },
-    { value: "Disappointed", emoji: "😞", id: "Disappointed" },
-  ];
+  const { moods, moodsMap } = useMoodsContext();
 
   const renderedMoods = moods.map((el) => {
     const { value, emoji, id } = el;

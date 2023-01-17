@@ -7,7 +7,7 @@ type DaysContextProps = {
   chooseMood: (mood: string) => void;
   saveDayChanges: () => void;
   isInUserDays: () => boolean;
-  findMood: (mood: string) => void;
+  findMood: (mood: string) => string | undefined;
 };
 
 interface UserDay {
@@ -23,7 +23,7 @@ export const DaysContext = createContext<DaysContextProps>({
   chooseMood: () => {},
   saveDayChanges: () => {},
   isInUserDays: () => false,
-  findMood: () => {},
+  findMood: () => undefined,
 });
 
 export const DaysContextProvider = ({ children }: any) => {
@@ -49,11 +49,21 @@ export const DaysContextProvider = ({ children }: any) => {
     const newSelectedDay = selectedDay;
     newSelectedDay.mood = mood;
     setSelectedDay(newSelectedDay);
-    saveDayChanges();
+    // saveDayChanges();
   };
 
   const saveDayChanges = () => {
-    setUserDays([...userDays, selectedDay]);
+    if (userDays.filter((el) => el.dateId === selectedDay.dateId).length > 0) {
+      const updatedUserDays = userDays.map((day) => {
+        if (day.dateId === selectedDay.dateId) {
+          return selectedDay;
+        }
+        return day;
+      });
+      setUserDays(updatedUserDays);
+    } else {
+      setUserDays([...userDays, selectedDay]);
+    }
   };
 
   const isInUserDays = () => {

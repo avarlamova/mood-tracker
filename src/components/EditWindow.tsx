@@ -7,7 +7,7 @@ import moment from "moment";
 
 const EditWindow = (message: any) => {
   const { closeModal } = useContext(ModalContext);
-  const { selectedDay, userDays } = useContext(DaysContext);
+  const { selectedDay, userDays, saveDayChanges } = useContext(DaysContext);
   let formattedDate;
   if (selectedDay?.date) {
     formattedDate = moment(
@@ -19,11 +19,7 @@ const EditWindow = (message: any) => {
     ).format("DD.MM.YYYY");
   }
   const saveChanges = () => {
-    // const dayToSave = {
-    //   date: selectedDay.date,
-    //   mood: selectedDay.mood,
-    // };
-    userDays.push(selectedDay);
+    saveDayChanges();
     closeModal();
   };
 
