@@ -12,15 +12,22 @@ type DayProps = {
 
 const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   const { openModal } = useContext(ModalContext);
-  const { chooseDay, selectedDay } = useContext(DaysContext);
+  const { chooseDay, selectedDay, findMood } = useContext(DaysContext);
 
   const toggleModal = () => {
+    const currYear = new Date().getFullYear();
+    const dateId = currYear + "-" + monthNum + "-" + dayNum;
+    const mood = findMood(dateId);
+    chooseDay(
+      {
+        day: dayNum,
+        month: monthNum,
+        year: currYear,
+      },
+      dateId,
+      mood
+    );
     openModal();
-    chooseDay({
-      day: dayNum,
-      month: monthNum,
-      year: new Date().getFullYear(),
-    });
   };
 
   const computedStyle = isInMonth ? "day" : "day absent";

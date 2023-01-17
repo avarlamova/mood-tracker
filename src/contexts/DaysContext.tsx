@@ -7,11 +7,13 @@ type DaysContextProps = {
   chooseMood: (mood: string) => void;
   saveDayChanges: () => void;
   isInUserDays: () => boolean;
+  findMood: (mood: string) => void;
 };
 
 interface UserDay {
   date?: { day: number; month: number; year: number };
   mood?: string;
+  dateId?: string;
 }
 
 export const DaysContext = createContext<DaysContextProps>({
@@ -21,20 +23,33 @@ export const DaysContext = createContext<DaysContextProps>({
   chooseMood: () => {},
   saveDayChanges: () => {},
   isInUserDays: () => false,
+  findMood: () => {},
 });
 
 export const DaysContextProvider = ({ children }: any) => {
   const [selectedDay, setSelectedDay] = useState<UserDay>({});
   const [userDays, setUserDays] = useState<UserDay[]>([]);
-  const chooseDay = (obj: { day: number; month: number; year: number }) => {
+  const chooseDay = (
+    obj: {
+      day: number;
+      month: number;
+      year: number;
+    },
+    dateId: string,
+    mood: string
+  ) => {
     setSelectedDay({
       date: obj,
-      mood: "",
+      mood: mood,
+      dateId: dateId,
     });
   };
 
   const chooseMood = (mood: string) => {
-    setSelectedDay({ ...selectedDay, mood: mood });
+    const newSelectedDay = selectedDay;
+    newSelectedDay.mood = mood;
+    setSelectedDay(newSelectedDay);
+    saveDayChanges();
   };
 
   const saveDayChanges = () => {
@@ -52,6 +67,13 @@ export const DaysContextProvider = ({ children }: any) => {
     );
   };
 
+  const findMood = (dateId: string) => {
+    const targetDay = userDays.filter((el) => el.dateId === dateId)[0];
+    if (targetDay) {
+      return targetDay.mood;
+    }
+  };
+
   return (
     <DaysContext.Provider
       value={{
@@ -61,6 +83,7 @@ export const DaysContextProvider = ({ children }: any) => {
         chooseMood: chooseMood,
         saveDayChanges: saveDayChanges,
         isInUserDays: isInUserDays,
+        findMood: findMood,
       }}
     >
       {children}

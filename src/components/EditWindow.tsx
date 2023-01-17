@@ -24,7 +24,6 @@ const EditWindow = (message: any) => {
     //   mood: selectedDay.mood,
     // };
     userDays.push(selectedDay);
-    console.log(userDays);
     closeModal();
   };
 

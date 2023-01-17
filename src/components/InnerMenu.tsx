@@ -1,11 +1,17 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { DaysContext } from "../contexts/DaysContext";
 import "./InnerMenu.scss";
 
 const InnerMenu: FC = () => {
   const [selectedMood, setSelectedMood] = useState("");
 
-  const { chooseMood, isInUserDays, selectedDay } = useContext(DaysContext);
+  const { chooseMood, selectedDay } = useContext(DaysContext);
+
+  useEffect(() => {
+    if (selectedDay.mood) {
+      setSelectedMood(selectedDay.mood);
+    }
+  }, [selectedDay.mood]);
 
   const handleMoodClick = (value: string) => {
     chooseMood(value);
@@ -18,11 +24,6 @@ const InnerMenu: FC = () => {
     { value: "Anxious", emoji: "😰", id: "Anxious" },
     { value: "Disappointed", emoji: "😞", id: "Disappointed" },
   ];
-
-  if (isInUserDays()) {
-    // setSelectedMood(selectedDay.mood);
-    console.log(selectedDay.mood, selectedMood);
-  }
 
   const renderedMoods = moods.map((el) => {
     const { value, emoji, id } = el;
