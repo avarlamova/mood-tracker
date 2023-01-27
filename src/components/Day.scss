@@ -13,6 +13,13 @@ $inactive-text: #a8a8a8;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  padding: 7px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   &.absent {
     color: $inactive-text;
     background-color: $inactive;
@@ -22,4 +29,14 @@ $inactive-text: #a8a8a8;
   &:nth-child(1) {
     border-left: 1px solid $inactive;
   }
+
+  // different moods
+
+  &.Happy {
+    background-color: red;
+  }
+}
+
+.emoji {
+  font-size: 22px;
 }

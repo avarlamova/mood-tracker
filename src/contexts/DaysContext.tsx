@@ -8,6 +8,8 @@ type DaysContextProps = {
   saveDayChanges: () => void;
   isInUserDays: () => boolean;
   findMood: (mood: string) => string | undefined;
+  isStatisticsActive: boolean;
+  toggleStatistics: () => void;
 };
 
 interface UserDay {
@@ -16,6 +18,7 @@ interface UserDay {
   dateId?: string;
 }
 
+//TODO вынести свитч в отдельный контекст
 export const DaysContext = createContext<DaysContextProps>({
   selectedDay: {},
   userDays: [],
@@ -24,11 +27,15 @@ export const DaysContext = createContext<DaysContextProps>({
   saveDayChanges: () => {},
   isInUserDays: () => false,
   findMood: () => undefined,
+  isStatisticsActive: false,
+  toggleStatistics: () => {},
 });
 
 export const DaysContextProvider = ({ children }: any) => {
   const [selectedDay, setSelectedDay] = useState<UserDay>({});
   const [userDays, setUserDays] = useState<UserDay[]>([]);
+  const [isStatisticsActive, setStatisticsActive] = useState(false);
+
   const chooseDay = (
     obj: {
       day: number;
@@ -46,14 +53,14 @@ export const DaysContextProvider = ({ children }: any) => {
   };
 
   const chooseMood = (mood: string) => {
-    const newSelectedDay = selectedDay;
-    newSelectedDay.mood = mood;
-    setSelectedDay(newSelectedDay);
-    // saveDayChanges();
+    setSelectedDay({ ...selectedDay, mood: mood });
   };
 
   const saveDayChanges = () => {
-    if (userDays.filter((el) => el.dateId === selectedDay.dateId).length > 0) {
+    const dayIdx = userDays.findIndex(
+      (day) => day.dateId === selectedDay.dateId
+    );
+    if (dayIdx > -1) {
       const updatedUserDays = userDays.map((day) => {
         if (day.dateId === selectedDay.dateId) {
           return selectedDay;
@@ -62,6 +69,7 @@ export const DaysContextProvider = ({ children }: any) => {
       });
       setUserDays(updatedUserDays);
     } else {
+      console.log([...userDays, selectedDay]);
       setUserDays([...userDays, selectedDay]);
     }
   };
@@ -84,6 +92,10 @@ export const DaysContextProvider = ({ children }: any) => {
     }
   };
 
+  const toggleStatistics = () => {
+    setStatisticsActive(!isStatisticsActive);
+  };
+
   return (
     <DaysContext.Provider
       value={{
@@ -94,6 +106,8 @@ export const DaysContextProvider = ({ children }: any) => {
         saveDayChanges: saveDayChanges,
         isInUserDays: isInUserDays,
         findMood: findMood,
+        isStatisticsActive: isStatisticsActive,
+        toggleStatistics: toggleStatistics,
       }}
     >
       {children}

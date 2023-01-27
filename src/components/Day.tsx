@@ -37,10 +37,13 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
     openModal();
   };
 
-  const computedStyle = isInMonth ? "day" : "day absent";
+  let computedStyle = isInMonth ? "day" : "day absent";
+  if (mood && moodEmoji) {
+    computedStyle += " " + mood;
+  }
   return (
     <div className={computedStyle} onClick={toggleModal}>
-      {mood && moodEmoji} {dayNum}
+      {mood && <div className="emoji">{moodEmoji}</div>} {dayNum}
     </div>
   );
 };
