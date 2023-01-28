@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 type DaysContextProps = {
   selectedDay: UserDay;
@@ -8,17 +9,14 @@ type DaysContextProps = {
   saveDayChanges: () => void;
   isInUserDays: () => boolean;
   findMood: (mood: string) => string | undefined;
-  isStatisticsActive: boolean;
-  toggleStatistics: () => void;
 };
 
-interface UserDay {
+export interface UserDay {
   date?: { day: number; month: number; year: number };
   mood?: string;
   dateId?: string;
 }
 
-//TODO вынести свитч в отдельный контекст
 export const DaysContext = createContext<DaysContextProps>({
   selectedDay: {},
   userDays: [],
@@ -27,14 +25,15 @@ export const DaysContext = createContext<DaysContextProps>({
   saveDayChanges: () => {},
   isInUserDays: () => false,
   findMood: () => undefined,
-  isStatisticsActive: false,
-  toggleStatistics: () => {},
 });
 
 export const DaysContextProvider = ({ children }: any) => {
   const [selectedDay, setSelectedDay] = useState<UserDay>({});
-  const [userDays, setUserDays] = useState<UserDay[]>([]);
-  const [isStatisticsActive, setStatisticsActive] = useState(false);
+  // const [userDays, setUserDays] = useState<UserDay[]>([]);
+  const [userDays, setUserDays] = useLocalStorage("userDays", []);
+
+  // const [storedDays, setStoredDays] = useLocalStorage("userDays", []);
+  // console.log(storedDays);
 
   const chooseDay = (
     obj: {
@@ -57,27 +56,30 @@ export const DaysContextProvider = ({ children }: any) => {
   };
 
   const saveDayChanges = () => {
-    const dayIdx = userDays.findIndex(
-      (day) => day.dateId === selectedDay.dateId
-    );
-    if (dayIdx > -1) {
-      const updatedUserDays = userDays.map((day) => {
-        if (day.dateId === selectedDay.dateId) {
-          return selectedDay;
-        }
-        return day;
-      });
+    if (userDays) {
+      const dayIdx = userDays.findIndex(
+        (day: UserDay) => day.dateId === selectedDay.dateId
+      );
+      let updatedUserDays = [];
+      if (dayIdx > -1) {
+        updatedUserDays = userDays.map((day: UserDay) => {
+          if (day.dateId === selectedDay.dateId) {
+            return selectedDay;
+          }
+          return day;
+        });
+      } else {
+        updatedUserDays = [...userDays, selectedDay];
+      }
       setUserDays(updatedUserDays);
-    } else {
-      console.log([...userDays, selectedDay]);
-      setUserDays([...userDays, selectedDay]);
+      // setStoredDays(updatedUserDays);
     }
   };
 
   const isInUserDays = () => {
     return (
       userDays.filter(
-        (day) =>
+        (day: UserDay) =>
           day.date?.day === selectedDay.date?.day &&
           day.date?.month === selectedDay.date?.month &&
           day.date?.year === selectedDay.date?.year
@@ -86,14 +88,14 @@ export const DaysContextProvider = ({ children }: any) => {
   };
 
   const findMood = (dateId: string) => {
-    const targetDay = userDays.filter((el) => el.dateId === dateId)[0];
-    if (targetDay) {
-      return targetDay.mood;
+    if (userDays) {
+      const targetDay = userDays.filter(
+        (el: UserDay) => el.dateId === dateId
+      )[0];
+      if (targetDay) {
+        return targetDay.mood;
+      }
     }
-  };
-
-  const toggleStatistics = () => {
-    setStatisticsActive(!isStatisticsActive);
   };
 
   return (
@@ -106,8 +108,6 @@ export const DaysContextProvider = ({ children }: any) => {
         saveDayChanges: saveDayChanges,
         isInUserDays: isInUserDays,
         findMood: findMood,
-        isStatisticsActive: isStatisticsActive,
-        toggleStatistics: toggleStatistics,
       }}
     >
       {children}

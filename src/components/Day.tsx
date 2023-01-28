@@ -2,6 +2,7 @@ import React, { FC, useContext } from "react";
 import { DaysContext } from "../contexts/DaysContext";
 import ModalContext from "../contexts/ModalContext";
 import { useMoodsContext } from "../contexts/MoodsContext";
+import StatisticsContext from "../contexts/StatisticsContext";
 
 import "./Day.scss";
 
@@ -13,7 +14,8 @@ type DayProps = {
 
 const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   const { openModal } = useContext(ModalContext);
-  const { chooseDay, findMood, isStatisticsActive } = useContext(DaysContext);
+  const { chooseDay, findMood } = useContext(DaysContext);
+  const { isColorActive } = useContext(StatisticsContext);
   const currYear = new Date().getFullYear();
   const dateId = currYear + "-" + monthNum + "-" + dayNum;
   const mood = findMood(dateId);
@@ -38,7 +40,7 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   };
 
   let computedStyle = isInMonth ? "day" : "day absent";
-  if (mood && moodEmoji && isStatisticsActive) {
+  if (mood && moodEmoji && isColorActive) {
     computedStyle += " hasMood " + mood;
   }
   return (

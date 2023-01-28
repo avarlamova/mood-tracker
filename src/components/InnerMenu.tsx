@@ -19,7 +19,7 @@ const InnerMenu: FC = () => {
     setSelectedMood(value);
   };
 
-  const { moods, moodsMap } = useMoodsContext();
+  const { moods } = useMoodsContext();
 
   const renderedMoods = moods.map((el) => {
     const { value, emoji, id } = el;
