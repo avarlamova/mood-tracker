@@ -7,10 +7,10 @@ import { useState } from "react";
 import { DaysContextProvider } from "./contexts/DaysContext";
 import { MoodsContext } from "./contexts/MoodsContext";
 import ToggleStatistics from "./components/ToggleStatistics";
+import Statistics from "./components/Statistics";
 
 const App = () => {
   const [modalShown, setModalShown] = useState(false);
-
   const openModal = () => {
     setModalShown(true);
   };
@@ -24,7 +24,10 @@ const App = () => {
       <ModalContext.Provider value={{ modalShown, openModal, closeModal }}>
         {modalShown && <ModalWrapper children={<EditWindow />} />}
         <Year />
-        <ToggleStatistics />
+        <div className="statistics-wrapper">
+          <Statistics />
+          <ToggleStatistics />
+        </div>
       </ModalContext.Provider>
     </DaysContextProvider>
   );

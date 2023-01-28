@@ -16,15 +16,17 @@ interface Mood {
 export const MoodsContext = createContext<MoodsContextProps>({
   moods: [
     { value: "Happy", emoji: "😊", id: "Happy" },
-    { value: "Sad", emoji: "😔", id: "Sad" },
-    { value: "Anxious", emoji: "😰", id: "Anxious" },
-    { value: "Disappointed", emoji: "😞", id: "Disappointed" },
+    { value: "Fine", emoji: "🙂", id: "Fine" },
+    { value: "Meh", emoji: "😒", id: "Meh" },
+    { value: "Sad", emoji: "😞", id: "Sad" },
+    { value: "Awful", emoji: "🤬", id: "Awful" },
   ],
   moodsMap: {
     Happy: "😊",
-    Sad: "😔",
-    Anxious: "😰",
-    Disappointed: "😞",
+    Fine: "🙂",
+    Meh: "😒",
+    Sad: "😞",
+    Awful: "🤬",
   },
 });
 

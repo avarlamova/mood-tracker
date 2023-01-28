@@ -13,7 +13,7 @@ type DayProps = {
 
 const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   const { openModal } = useContext(ModalContext);
-  const { chooseDay, selectedDay, findMood } = useContext(DaysContext);
+  const { chooseDay, findMood, isStatisticsActive } = useContext(DaysContext);
   const currYear = new Date().getFullYear();
   const dateId = currYear + "-" + monthNum + "-" + dayNum;
   const mood = findMood(dateId);
@@ -38,8 +38,8 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   };
 
   let computedStyle = isInMonth ? "day" : "day absent";
-  if (mood && moodEmoji) {
-    computedStyle += " " + mood;
+  if (mood && moodEmoji && isStatisticsActive) {
+    computedStyle += " hasMood " + mood;
   }
   return (
     <div className={computedStyle} onClick={toggleModal}>
