@@ -10,6 +10,7 @@ import ToggleColor from "./components/ToggleColor";
 import Statistics from "./components/Statistics";
 import StatisticsContext from "./contexts/StatisticsContext";
 import StatisticsButton from "./components/StatisticsButton";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
   const [modalShown, setModalShown] = useState(false);
@@ -27,7 +28,7 @@ const App = () => {
     setStatisticsActive(!isStatisticsActive);
   };
 
-  const [isColorActive, setColorActive] = useState(false);
+  const [isColorActive, setColorActive] = useLocalStorage("color", false);
   const toggleColor = () => {
     setColorActive(!isColorActive);
   };

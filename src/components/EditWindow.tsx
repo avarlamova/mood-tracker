@@ -6,6 +6,7 @@ import { DaysContext } from "../contexts/DaysContext";
 import moment from "moment";
 
 const EditWindow = (message: any) => {
+  //TODO handle 'clear' action: no mood chosen
   const { closeModal } = useContext(ModalContext);
   const { selectedDay, saveDayChanges } = useContext(DaysContext);
   let formattedDate;
