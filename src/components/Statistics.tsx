@@ -3,26 +3,25 @@ import { DaysContext } from "../contexts/DaysContext";
 import "./Statistics.scss";
 import { UserDay } from "../contexts/DaysContext";
 import StatisticsContext from "../contexts/StatisticsContext";
+import { useMoodsContext } from "../contexts/MoodsContext";
 
 const Statistics = () => {
   const { userDays } = useContext(DaysContext);
   const { toggleStatistics } = useContext(StatisticsContext);
+  const { moods } = useMoodsContext();
 
-  //   console.log(userDays);
-
-  const happyDaysCount = userDays.filter(
-    (day: UserDay) => day.mood === "Happy"
-  ).length;
-
-  const mehDaysCount = userDays.filter(
-    (day: UserDay) => day.mood === "Meh"
-  ).length;
+  const renderedStatistics = moods.map((mood) => {
+    const count = userDays.filter(
+      (day: UserDay) => day.mood === mood.value
+    ).length;
+    const renderedParagraph = mood.value + " days: " + count;
+    return <p key={mood.id}>{renderedParagraph}</p>;
+  });
 
   return (
     <div className="statistics-window">
       <div className="content">
-        <p> Happy days: {happyDaysCount} </p>
-        <p> Meh days: {mehDaysCount} </p>
+        {renderedStatistics}
         <div className="actions">
           <button className="actions btn-cancel" onClick={toggleStatistics}>
             Close
