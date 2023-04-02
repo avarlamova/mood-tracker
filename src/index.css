@@ -11,6 +11,8 @@ body {
     #80d0c7 50%,
     #ffffff 100%
   );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #root {
