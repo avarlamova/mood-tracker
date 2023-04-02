@@ -1,5 +1,10 @@
 $inactive: #d5d4df;
 $inactive-text: #a8a8a8;
+$happy: #5bed51;
+$fine: #389e2b;
+$meh: #2b939e;
+$sad: #edeb51;
+$awful: #ed5e51;
 
 .day {
   cursor: pointer;
@@ -50,28 +55,43 @@ $inactive-text: #a8a8a8;
   // different moods
 
   &.Happy {
-    background-color: #5bed51;
+    background-color: $happy;
   }
 
   &.Fine {
-    background-color: #389e2b;
+    background-color: $fine;
   }
 
   &.Meh {
-    background-color: #2b939e;
+    background-color: $meh;
   }
 
   &.Sad {
-    background-color: #edeb51;
+    background-color: $sad;
   }
 
   &.Awful {
-    background-color: #ed5e51;
+    background-color: $awful;
   }
 }
 
 .emoji {
   font-size: 18px;
+  @media only screen and (max-width: 600px) {
+    font-size: 8px;
+    line-height: 8px;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+}
+
+.dayWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

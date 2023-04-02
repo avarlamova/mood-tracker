@@ -19,6 +19,7 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   const currYear = new Date().getFullYear();
   const dateId = currYear + "-" + monthNum + "-" + dayNum;
   const mood = findMood(dateId);
+
   const { moodsMap } = useMoodsContext();
   let moodEmoji: string = "";
 
@@ -43,9 +44,12 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   if (mood && moodEmoji && isColorActive) {
     computedStyle += " hasMood " + mood;
   }
+
   return (
     <div className={computedStyle} onClick={toggleModal}>
-      {mood && <div className="emoji">{moodEmoji}</div>} {dayNum}
+      <div className="dayWrapper">
+        {mood && <div className="emoji">{moodEmoji}</div>} {dayNum}
+      </div>
     </div>
   );
 };

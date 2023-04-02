@@ -1,6 +1,11 @@
+import { FC } from "react";
 import Month from "./Month";
 
-const Year = () => {
+type YearProps = {
+  year: string;
+};
+
+const Year: FC<YearProps> = ({ year }) => {
   const months = [
     "January",
     "February",
@@ -41,7 +46,12 @@ const Year = () => {
       />
     );
   });
-  return <div>{renderedMonths}</div>;
+  return (
+    <>
+      <h1> Moods of {year} </h1>
+      <div>{renderedMonths}</div>
+    </>
+  );
 };
 
 export default Year;

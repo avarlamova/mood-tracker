@@ -45,7 +45,7 @@ const App = () => {
         <ModalContext.Provider value={{ modalShown, openModal, closeModal }}>
           {modalShown && <ModalWrapper children={<EditWindow />} />}
           {isStatisticsActive && <ModalWrapper children={<Statistics />} />}
-          <Year />
+          <Year year={"2023"} />
           <div className="statistics-wrapper">
             <StatisticsButton />
             <ToggleColor />
