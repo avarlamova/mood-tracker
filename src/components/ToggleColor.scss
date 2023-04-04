@@ -1,9 +1,26 @@
-.switch {
+.switch-btn {
+  /* Extra small devices (phones, 600px and down) */
+  // @media only screen and (max-width: 600px) {
+  //   font-size: 12px;
+  //   line-height: 12px;
+  //   padding: 7px;
+  // }
+
+  // /* Medium devices (landscape tablets, 768px and up) */
+  // @media only screen and (min-width: 768px) {
+  //   font-size: 14px;
+  //   line-height: 14px;
+  // }
   > svg {
     cursor: pointer;
+    display: block;
     -webkit-transition: all 0.3s 0.1s ease-in-out;
     -moz-transition: all 0.3s 0.1s ease-in-out;
     -o-transition: all 0.3s 0.1s ease-in-out;
     transition: all 0.3s 0.1s ease-in-out;
+
+    @media only screen and (max-width: 600px) {
+      width: 50px;
+    }
   }
 }

@@ -1,8 +1,9 @@
 $active: #45539d;
 
 .statistics-wrapper {
-  /* padding: 2em; */
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3em;
+  padding: 1em;
 }

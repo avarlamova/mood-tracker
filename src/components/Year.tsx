@@ -48,7 +48,9 @@ const Year: FC<YearProps> = ({ year }) => {
   });
   return (
     <>
-      <h1> Moods of {year} </h1>
+      <h1 style={{ display: "flex", justifyContent: "center" }}>
+        Moods of {year}
+      </h1>
       <div>{renderedMonths}</div>
     </>
   );
