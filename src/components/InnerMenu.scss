@@ -1,13 +1,15 @@
 .emoji-list {
   list-style: none;
-  padding: 0;
+  padding: 15px;
   margin: 0;
 }
 .list-item {
   display: flex;
   cursor: pointer;
-  padding: 5px 5px;
-  font-size: 16px;
+  gap: 5px;
+  align-items: center;
+  // padding: 5px 5px;
+  font-size: 18px;
   &:hover:not(.selected) {
     color: red;
   }

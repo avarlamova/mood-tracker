@@ -10,6 +10,7 @@ type MonthProps = {
   name: string;
   shortMonthName: string;
 };
+
 const Month: FC<MonthProps> = ({ monthNum, name, shortMonthName }) => {
   const year = new Date().getFullYear();
   const size = useWindowSize();

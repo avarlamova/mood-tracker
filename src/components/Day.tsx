@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import { DaysContext } from "../contexts/DaysContext";
 import ModalContext from "../contexts/ModalContext";
 import { useMoodsContext } from "../contexts/MoodsContext";
-import StatisticsContext from "../contexts/StatisticsContext";
+import { StatisticsContext } from "../contexts/StatisticsContext";
 
 import "./Day.scss";
 
@@ -28,16 +28,18 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   }
 
   const toggleModal = () => {
-    chooseDay(
-      {
-        day: dayNum,
-        month: monthNum,
-        year: currYear,
-      },
-      dateId,
-      mood
-    );
-    openModal();
+    if (isInMonth) {
+      chooseDay(
+        {
+          day: dayNum,
+          month: monthNum,
+          year: currYear,
+        },
+        dateId,
+        mood
+      );
+      openModal();
+    }
   };
 
   let computedStyle = isInMonth ? "day" : "day absent";

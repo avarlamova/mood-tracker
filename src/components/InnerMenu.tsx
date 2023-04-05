@@ -15,8 +15,13 @@ const InnerMenu: FC = () => {
   }, [selectedDay.mood]);
 
   const handleMoodClick = (value: string) => {
-    chooseMood(value);
-    setSelectedMood(value);
+    if (value === selectedMood) {
+      chooseMood("");
+      setSelectedMood("");
+    } else {
+      chooseMood(value);
+      setSelectedMood(value);
+    }
   };
 
   const { moods } = useMoodsContext();
@@ -27,16 +32,16 @@ const InnerMenu: FC = () => {
       "list-item" + (selectedMood === value ? " selected" : "");
 
     return (
-      <div
+      <ul
         key={id}
         className="emoji-list"
         onClick={() => handleMoodClick(value)}
       >
-        <div className={classNames}>
-          {emoji}
-          {value}
-        </div>
-      </div>
+        <li className={classNames}>
+          <div>{emoji}</div>
+          <div>{value}</div>
+        </li>
+      </ul>
     );
   });
   return <div>{renderedMoods}</div>;

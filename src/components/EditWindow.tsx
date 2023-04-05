@@ -6,9 +6,9 @@ import { DaysContext } from "../contexts/DaysContext";
 import moment from "moment";
 
 const EditWindow = (message: any) => {
-  //TODO handle 'clear' action: no mood chosen
   const { closeModal } = useContext(ModalContext);
   const { selectedDay, saveDayChanges } = useContext(DaysContext);
+
   let formattedDate;
   if (selectedDay?.date) {
     formattedDate = moment(
@@ -35,7 +35,7 @@ const EditWindow = (message: any) => {
       <InnerMenu />
       <div className="actions">
         <button className="actions btn-save" onClick={saveChanges}>
-          Save changes
+          Save
         </button>
         <button className="actions btn-cancel" onClick={closeWindow}>
           Close
