@@ -8,8 +8,8 @@ $awful: #ed5e51;
 
 .day {
   cursor: pointer;
-  background-color: white;
-  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.8);
+  // opacity: 0.8;
   border: 1px solid $inactive;
   border-left: 0;
   border-bottom: 0;

@@ -11,6 +11,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: "Open Sans", sans-serif;
+  min-width: 100%;
 }
 h1,
 p,
@@ -19,7 +20,7 @@ div {
 }
 #root {
   margin: 0 auto;
-  width: 100vw;
+  /* max-width: 90vw; */
 }
 
 /* Extra small devices (phones, 600px and down) */

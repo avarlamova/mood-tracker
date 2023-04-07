@@ -1,12 +1,17 @@
 .monthContainer {
-  display: flex;
-  align-items: center;
-  max-width: 100vw;
+  // display: flex;
+  display: grid;
+  grid-template-columns: 8% 92%;
+  // align-items: center;
+  // max-width: 100vw;
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: 5% 95%;
+  }
 }
 
 .monthName {
   text-align: center;
-  flex: 0 0 8%;
+  // flex: 0 0 10%;
   font-weight: 900;
   font-size: 14px;
   color: #000000;
@@ -15,17 +20,17 @@
   @media only screen and (max-width: 600px) {
     font-size: 8px;
     line-height: 8px;
-    flex: 0 0 5%;
+    // flex: 0 0 5%;
   }
 }
 
 .daysContainer {
   display: flex;
-  flex: 0 0 92%;
+  // flex: 0 0 92%;
   @media only screen and (max-width: 600px) {
     font-size: 8px;
     line-height: 8px;
-    flex: 0 0 95%;
+    // flex: 0 0 95%;
   }
   // &:nth-child(1) {
   //   border-top: 1px solid #000000;
