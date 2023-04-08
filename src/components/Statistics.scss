@@ -31,9 +31,18 @@
       background: white;
     }
   }
-  & .content {
-    padding: 1rem;
+  .content {
+    padding: 2rem;
     background: #eee;
     width: 500px;
+
+    & ul {
+      list-style: none;
+      padding: 0;
+    }
+    & li {
+      font-size: 18px;
+      line-height: 25px;
+    }
   }
 }

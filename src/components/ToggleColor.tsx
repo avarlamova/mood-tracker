@@ -12,12 +12,12 @@ const ToggleColor = () => {
     <div className="switch-btn">
       {isColorActive ? (
         <>
-          <p>Disable colored calendar </p>
+          <p>Disable colors </p>
           <ActiveSwitch onClick={toggleColor} />
         </>
       ) : (
         <>
-          <p>Enable colored calendar</p>
+          <p>Enable colors</p>
           <InactiveSwitch onClick={toggleColor} />
         </>
       )}

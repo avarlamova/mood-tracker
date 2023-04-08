@@ -1,4 +1,5 @@
 $active: #45539d;
+// $epr-emoji-fullsize:
 
 .statistics-wrapper {
   display: flex;
@@ -7,3 +8,37 @@ $active: #45539d;
   gap: 3em;
   padding: 1em;
 }
+.EmojiPickerReact {
+  --epr-emoji-fullsize: calc(
+    var(--epr-emoji-size) + var(--epr-emoji-padding)
+  ) !important;
+  --epr-preview-height: 40px !important;
+}
+
+.EmojiPickerReact {
+  & .epr-category-nav {
+    padding: 0 !important;
+  }
+  & .epr-main {
+    height: 350px;
+  }
+}
+
+.epr-preview {
+  & .__EmojiPicker__.epr-emoji-img {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+// .epr-skin-tone-select {
+//   display: none;
+// }
+
+// .FlexRow {
+//   height: 40px;
+// }
+// .__EmojiPicker__epr-emoji-img {
+//   font-size: 0;
+//   height: 30px;
+//   width: 30px;
+// }

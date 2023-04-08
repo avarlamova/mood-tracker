@@ -1,5 +1,12 @@
 import { ReactNode } from "react";
 
+export interface IEmoji {
+  activeSkinTone: string;
+  emoji: string;
+  names: string[];
+  unified: string;
+  unifiedWithoutSkinTone: string;
+}
 // export interface Medicament {
 //   id?: string;
 //   metaId?: string;

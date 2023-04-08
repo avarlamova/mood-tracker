@@ -14,13 +14,13 @@ const Statistics = () => {
     const count = userDays.filter(
       (day: UserDay) => day.mood === mood.value
     ).length;
-    const renderedParagraph = mood.value + " days: " + count;
-    return <p key={mood.id}>{renderedParagraph}</p>;
+    const renderedParagraph = mood.value + " " + mood.emoji + " days: " + count;
+    return <li key={mood.id}>{renderedParagraph}</li>;
   });
 
   return (
     <div className="content">
-      {renderedStatistics}
+      <ul>{renderedStatistics}</ul>
       <div className="actions">
         <button className="actions btn-cancel" onClick={toggleStatistics}>
           Close
