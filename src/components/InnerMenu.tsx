@@ -3,6 +3,7 @@ import { DaysContext } from "../contexts/DaysContext";
 import { MoodsContext } from "../contexts/MoodsContext";
 import "./InnerMenu.scss";
 import NewMoodForm from "./NewMoodForm";
+import { ReactComponent as DeleteIcon } from "../assets/DeleteIcon.svg";
 
 const InnerMenu: FC = () => {
   const [selectedMood, setSelectedMood] = useState<string>("");
@@ -10,7 +11,7 @@ const InnerMenu: FC = () => {
   const [isNewMoodAdded, setNewMoodAdded] = useState<boolean>(false);
 
   const { chooseMood, selectedDay } = useContext(DaysContext);
-  const { moods, addNewMood } = useContext(MoodsContext);
+  const { moods, deleteMood } = useContext(MoodsContext);
 
   useEffect(() => {
     if (selectedDay.mood) {
@@ -41,7 +42,7 @@ const InnerMenu: FC = () => {
   };
 
   const renderedMoods = moods.map((el) => {
-    const { value, emoji, id } = el;
+    const { value, emoji, id, isCustom } = el;
     const classNames =
       "list-item" + (selectedMood === value ? " selected" : "");
 
@@ -53,6 +54,9 @@ const InnerMenu: FC = () => {
       >
         <div>{emoji}</div>
         <div>{value}</div>
+        {isCustom && (
+          <DeleteIcon onClick={() => deleteMood(id)} className="deleteIcon" />
+        )}
       </li>
     );
   });

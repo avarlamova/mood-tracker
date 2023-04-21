@@ -8,12 +8,13 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
   const [isEmojiPickerOpen, setEmojiPickerOpen] = useState<boolean>(false);
 
   const [newMood, setNewMood] = useState<string>("");
-  const [newMoodEmoji, setNewMoodEmoji] = useState<string>("");
+  const [newMoodEmoji, setNewMoodEmoji] = useState<string>("😀");
   const { addNewMood } = useContext(MoodsContext);
 
   const handleAddingEmoji = (val: IEmoji) => {
     const addedEmoji = val.emoji;
     setNewMoodEmoji(addedEmoji);
+    setEmojiPickerOpen(false);
   };
 
   const handleAddingMood = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,33 +25,40 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
 
   const handleNewMoodSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newMoodEmoji && newMood) {
-      addNewMood({ value: newMood, emoji: newMoodEmoji });
-    }
+    addNewMood({
+      value: newMood,
+      emoji: newMoodEmoji,
+      isCustom: true,
+      id: newMood,
+    });
     setNewMoodAdded(false);
     setNewMood("");
     setNewMoodEmoji("");
   };
   return (
     <form className="newMood-form" onSubmit={handleNewMoodSubmit}>
-      <label htmlFor="newMood">New mood name</label>
-      <input
-        type="text"
-        id="newMood"
-        // placeholder="New mood name"
-        onChange={handleAddingMood}
-      ></input>
-      {/* <label htmlFor="newMoodEmoji"></label> */}
-      <button onClick={() => setEmojiPickerOpen(true)}>
-        Pick new mood's emoji
-      </button>
-      <input
-        type="text"
-        id="newMoodEmoji"
-        value={newMoodEmoji}
-        disabled
-      ></input>
-
+      <div className="emojiContainer">
+        <input
+          type="text"
+          id="newMood"
+          placeholder="Mood name"
+          onChange={handleAddingMood}
+        ></input>
+        {/* <button
+          className="pickEmojiBtn"
+          type="button"
+          onClick={() => setEmojiPickerOpen(!isEmojiPickerOpen)}
+        >
+          Pick emoji
+        </button> */}
+        <button
+          type="button"
+          onClick={() => setEmojiPickerOpen(!isEmojiPickerOpen)}
+          className="emojiBtn"
+        >
+          {newMoodEmoji}
+        </button>
+      </div>
       {isEmojiPickerOpen && (
         <EmojiPicker
           onEmojiClick={handleAddingEmoji}
@@ -58,7 +66,7 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
           width={350}
         />
       )}
-      <button type="submit">Add</button>
+      {newMoodEmoji && newMood && <button type="submit">Add</button>}
     </form>
   );
 };

@@ -4,7 +4,6 @@
 }
 
 input[type="text"] {
-  //   background: rgba(242, 242, 242, 0.4);
   border: 0.5px solid #bdbdbd;
   color: #333;
   border-radius: 8px;
@@ -13,6 +12,7 @@ input[type="text"] {
   line-height: 18px;
   padding: 11px;
   outline: none;
+  width: 70%;
 }
 
 label {
@@ -20,4 +20,34 @@ label {
   font-size: 14px;
   line-height: 18px;
   color: #828282;
+}
+
+.emojiContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  padding: 10px;
+}
+
+// .pickEmojiBtn {
+//   cursor: pointer;
+//   //   color: white;
+//   border: 0.5px solid #bdbdbd;
+//   color: #333;
+//   border-radius: 8px;
+//   font-weight: 700;
+//   font-size: 16px;
+//   line-height: 18px;
+//   padding: 11px;
+//   //   background-color: yellow;
+// }
+
+.emojiBtn {
+  font-size: 20px;
+  //   border: none;
+  color: #333;
+  border-radius: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 }

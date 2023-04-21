@@ -6,6 +6,7 @@
 }
 .list-item {
   display: flex;
+  position: relative;
   cursor: pointer;
   gap: 5px;
   align-items: center;
@@ -25,4 +26,9 @@
     cursor: pointer;
     font-weight: bold;
   }
+}
+
+.deleteIcon {
+  position: absolute;
+  right: 10px;
 }

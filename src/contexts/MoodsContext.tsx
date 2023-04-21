@@ -9,26 +9,29 @@ type MoodsContextProps = {
     [val: string]: string;
   };
   addNewMood: (newMood: Mood) => void;
+  deleteMood: (id: string | undefined) => void;
 };
 
 interface Mood {
   value: string;
   emoji: string;
   id?: string;
+  isCustom: boolean;
 }
 
 const defaultMoods = [
-  { value: "Happy", emoji: "😊", id: "Happy" }, //&#x1F60A;
-  { value: "Fine", emoji: "🙂", id: "Fine" },
-  { value: "Meh", emoji: "😒", id: "Meh" },
-  { value: "Sad", emoji: "😞", id: "Sad" },
-  { value: "Awful", emoji: "🤬", id: "Awful" },
+  { value: "Happy", emoji: "😊", id: "Happy", isCustom: false }, //&#x1F60A;
+  { value: "Fine", emoji: "🙂", id: "Fine", isCustom: false },
+  { value: "Meh", emoji: "😒", id: "Meh", isCustom: false },
+  { value: "Sad", emoji: "😞", id: "Sad", isCustom: false },
+  { value: "Awful", emoji: "🤬", id: "Awful", isCustom: false },
 ];
 
 export const MoodsContext = createContext<MoodsContextProps>({
   moods: [],
   moodsMap: {},
   addNewMood: () => {},
+  deleteMood: () => {},
 });
 
 export const MoodsContextProvider = ({ children }: any) => {
@@ -40,6 +43,13 @@ export const MoodsContextProvider = ({ children }: any) => {
     setMoods([...moods, newValue]);
     setCustomMoods([...customMoods, newValue]);
     // add to local storage
+  };
+
+  const deleteMood = (id: string | undefined) => {
+    let idx = moods.findIndex((el) => el.id === id);
+    if (idx !== -1) {
+      moods.splice(idx, 1);
+    }
   };
   const moodsMap = moods.reduce((result: any, mood) => {
     result[mood.value] = mood.emoji;
@@ -58,6 +68,7 @@ export const MoodsContextProvider = ({ children }: any) => {
         moods,
         moodsMap,
         addNewMood,
+        deleteMood,
       }}
     >
       {children}
