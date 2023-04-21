@@ -19,7 +19,6 @@ export const StatisticsProvider = ({ children }: any) => {
   const [isStatisticsActive, setStatisticsActive] = useState<boolean>(false);
 
   const toggleStatistics = () => {
-    // console.log(22, isStatisticsActive);
     setStatisticsActive(!isStatisticsActive);
   };
 

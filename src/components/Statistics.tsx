@@ -3,12 +3,12 @@ import { DaysContext } from "../contexts/DaysContext";
 import "./Statistics.scss";
 import { UserDay } from "../contexts/DaysContext";
 import { StatisticsContext } from "../contexts/StatisticsContext";
-import { useMoodsContext } from "../contexts/MoodsContext";
+import { MoodsContext } from "../contexts/MoodsContext";
 
 const Statistics = () => {
   const { userDays } = useContext(DaysContext);
   const { toggleStatistics } = useContext(StatisticsContext);
-  const { moods } = useMoodsContext();
+  const { moods } = useContext(MoodsContext);
 
   const renderedStatistics = moods.map((mood) => {
     const count = userDays.filter(

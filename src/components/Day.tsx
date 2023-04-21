@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { DaysContext } from "../contexts/DaysContext";
 import ModalContext from "../contexts/ModalContext";
-import { useMoodsContext } from "../contexts/MoodsContext";
+import { MoodsContext } from "../contexts/MoodsContext";
 import { StatisticsContext } from "../contexts/StatisticsContext";
 
 import "./Day.scss";
@@ -20,7 +20,7 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   const dateId = currYear + "-" + monthNum + "-" + dayNum;
   const mood = findMood(dateId);
 
-  const { moodsMap } = useMoodsContext();
+  const { moodsMap } = useContext(MoodsContext);
   let moodEmoji: string = "";
 
   if (mood) {

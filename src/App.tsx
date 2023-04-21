@@ -10,6 +10,7 @@ import Statistics from "./components/Statistics";
 import { StatisticsContext } from "./contexts/StatisticsContext";
 import StatisticsButton from "./components/StatisticsButton";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { MoodsContextProvider } from "./contexts/MoodsContext";
 // import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
@@ -35,31 +36,36 @@ const App = () => {
 
   return (
     <DaysContextProvider>
-      <StatisticsContext.Provider
-        value={{
-          isStatisticsActive,
-          toggleStatistics,
-          isColorActive,
-          toggleColor,
-        }}
-      >
-        <ModalContext.Provider value={{ modalShown, openModal, closeModal }}>
-          {modalShown && (
-            <ModalWrapper children={<EditWindow />} toggleModal={closeModal} />
-          )}
-          {isStatisticsActive && (
-            <ModalWrapper
-              children={<Statistics />}
-              toggleModal={toggleStatistics}
-            />
-          )}
-          <Year year={"2023"} />
-          <div className="statistics-wrapper">
-            <StatisticsButton />
-            <ToggleColor />
-          </div>
-        </ModalContext.Provider>
-      </StatisticsContext.Provider>
+      <MoodsContextProvider>
+        <StatisticsContext.Provider
+          value={{
+            isStatisticsActive,
+            toggleStatistics,
+            isColorActive,
+            toggleColor,
+          }}
+        >
+          <ModalContext.Provider value={{ modalShown, openModal, closeModal }}>
+            {modalShown && (
+              <ModalWrapper
+                children={<EditWindow />}
+                toggleModal={closeModal}
+              />
+            )}
+            {isStatisticsActive && (
+              <ModalWrapper
+                children={<Statistics />}
+                toggleModal={toggleStatistics}
+              />
+            )}
+            <Year year={"2023"} />
+            <div className="statistics-wrapper">
+              <StatisticsButton />
+              <ToggleColor />
+            </div>
+          </ModalContext.Provider>
+        </StatisticsContext.Provider>
+      </MoodsContextProvider>
     </DaysContextProvider>
   );
 };

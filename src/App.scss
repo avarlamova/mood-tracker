@@ -13,6 +13,8 @@ $active: #45539d;
     var(--epr-emoji-size) + var(--epr-emoji-padding)
   ) !important;
   --epr-preview-height: 40px !important;
+  --epr-emoji-size: 22px !important;
+  --epr-emoji-padding: 2px !important;
 }
 
 .EmojiPickerReact {
