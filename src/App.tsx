@@ -29,9 +29,13 @@ const App = () => {
     setStatisticsActive(!isStatisticsActive);
   };
 
-  const [isColorActive, setColorActive] = useLocalStorage("color", false);
+  const [isColorActive, setColorActive] = useLocalStorage("color", "inactive");
   const toggleColor = () => {
-    setColorActive(!isColorActive);
+    if (isColorActive === "inactive") {
+      setColorActive("active");
+    } else {
+      setColorActive("inactive");
+    }
   };
 
   return (

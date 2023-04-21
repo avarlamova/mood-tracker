@@ -43,7 +43,7 @@ const Day: FC<DayProps> = ({ dayNum, monthNum, isInMonth }) => {
   };
 
   let computedStyle = isInMonth ? "day" : "day absent";
-  if (mood && moodEmoji && isColorActive) {
+  if (mood && moodEmoji && isColorActive === "active") {
     computedStyle += " hasMood " + mood;
   }
 

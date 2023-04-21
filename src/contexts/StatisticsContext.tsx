@@ -4,14 +4,14 @@ import useLocalStorage from "../hooks/useLocalStorage";
 type StatisticsContextProps = {
   isStatisticsActive: boolean;
   toggleStatistics: () => void;
-  isColorActive: boolean;
+  isColorActive: string;
   toggleColor: () => void;
 };
 
 export const StatisticsContext = createContext<StatisticsContextProps>({
   isStatisticsActive: false,
   toggleStatistics: () => {},
-  isColorActive: false,
+  isColorActive: "inactive",
   toggleColor: () => {},
 });
 

@@ -10,7 +10,7 @@ const ToggleColor = () => {
 
   return (
     <div className="switch-btn">
-      {isColorActive ? (
+      {isColorActive === "active" ? (
         <>
           <p>Disable colors </p>
           <ActiveSwitch onClick={toggleColor} />

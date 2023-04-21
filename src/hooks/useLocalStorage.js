@@ -3,7 +3,7 @@ export default function useLocalStorage(key, defaultValue) {
   const getValue = () => {
     const jsonValue = localStorage.getItem(key);
     if (jsonValue) {
-      console.log(jsonValue, "value ok");
+      // console.log(jsonValue, "value ok");
       return JSON.parse(jsonValue);
     } else {
       return defaultValue;
