@@ -3,7 +3,6 @@ export default function useLocalStorage(key, defaultValue) {
   const getValue = () => {
     const jsonValue = localStorage.getItem(key);
     if (jsonValue) {
-      // console.log(jsonValue, "value ok");
       return JSON.parse(jsonValue);
     } else {
       return defaultValue;
@@ -11,7 +10,7 @@ export default function useLocalStorage(key, defaultValue) {
   };
 
   const [value, setValue] = useState(getValue);
-
+  console.log(value);
   useEffect(() => {
     if (value) {
       localStorage.setItem(key, JSON.stringify(value));

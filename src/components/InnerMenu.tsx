@@ -64,7 +64,8 @@ const InnerMenu: FC = () => {
     <ul className="emoji-list">
       {renderedMoods}
       <li className="bullet-add" onClick={() => handleNewMoodClick()}>
-        <input type="checkbox" checked={isNewMoodAdded}></input> Add new mood
+        <input type="checkbox" defaultChecked={isNewMoodAdded}></input> Add new
+        mood
       </li>
       {isNewMoodAdded && <NewMoodForm setNewMoodAdded={setNewMoodAdded} />}
     </ul>

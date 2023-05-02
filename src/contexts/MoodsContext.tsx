@@ -1,8 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-// TODO ability to delete custom moods
 type MoodsContextProps = {
   moods: Mood[];
   moodsMap: {
@@ -46,22 +45,15 @@ export const MoodsContextProvider = ({ children }: any) => {
   };
 
   const deleteMood = (id: string | undefined) => {
-    let idx = moods.findIndex((el) => el.id === id);
-    if (idx !== -1) {
-      moods.splice(idx, 1);
+    if (id) {
+      setMoods(moods.filter((el: Mood) => el.id !== id));
+      setCustomMoods(customMoods.filter((el: Mood) => el.id !== id));
     }
   };
   const moodsMap = moods.reduce((result: any, mood) => {
     result[mood.value] = mood.emoji;
     return result;
   }, {});
-  // = {
-  //   Happy: "😊",
-  //   Fine: "🙂",
-  //   Meh: "😒",
-  //   Sad: "😞",
-  //   Awful: "🤬",
-  // };
   return (
     <MoodsContext.Provider
       value={{
@@ -75,4 +67,3 @@ export const MoodsContextProvider = ({ children }: any) => {
     </MoodsContext.Provider>
   );
 };
-// export const useMoodsContext = () => useContext(MoodsContext);
