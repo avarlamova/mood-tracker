@@ -18,9 +18,9 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
   };
 
   const handleAddingMood = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      setNewMood(e.target.value);
-    }
+    // if (e.target.value) {
+    setNewMood(e.target.value);
+    // }
   };
 
   const handleNewMoodSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,13 +44,6 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
           placeholder="Mood name"
           onChange={handleAddingMood}
         ></input>
-        {/* <button
-          className="pickEmojiBtn"
-          type="button"
-          onClick={() => setEmojiPickerOpen(!isEmojiPickerOpen)}
-        >
-          Pick emoji
-        </button> */}
         <button
           type="button"
           onClick={() => setEmojiPickerOpen(!isEmojiPickerOpen)}
@@ -66,7 +59,11 @@ const NewMoodForm = ({ setNewMoodAdded }: any) => {
           width={350}
         />
       )}
-      {newMoodEmoji && newMood && <button type="submit">Add</button>}
+      {newMoodEmoji && newMood && (
+        <button type="submit" className="addBtn">
+          Add
+        </button>
+      )}
     </form>
   );
 };

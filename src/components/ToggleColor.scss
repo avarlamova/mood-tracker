@@ -5,14 +5,15 @@
   gap: 10px;
 
   > p {
+    font-size: 20px;
     margin: 0;
   }
   /* Extra small devices (phones, 600px and down) */
-  // @media only screen and (max-width: 600px) {
-  //   font-size: 12px;
-  //   line-height: 12px;
-  //   padding: 7px;
-  // }
+  @media only screen and (max-width: 600px) {
+    font-size: 12px;
+    line-height: 12px;
+    padding: 7px;
+  }
 
   // /* Medium devices (landscape tablets, 768px and up) */
   // @media only screen and (min-width: 768px) {
