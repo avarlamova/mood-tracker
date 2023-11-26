@@ -15,6 +15,7 @@ import { MoodsContextProvider } from "./contexts/MoodsContext";
 
 const App = () => {
   const [modalShown, setModalShown] = useState(false);
+
   const openModal = () => {
     setModalShown(true);
   };
@@ -30,6 +31,7 @@ const App = () => {
   };
 
   const [isColorActive, setColorActive] = useLocalStorage("color", "inactive");
+  
   const toggleColor = () => {
     if (isColorActive === "inactive") {
       setColorActive("active");

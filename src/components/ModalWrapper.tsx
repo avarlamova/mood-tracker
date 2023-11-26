@@ -22,6 +22,7 @@ const ModalWrapper: FC<ModalWrapperProps> = ({ children, toggleModal }) => {
   if (!containerElement) {
     return null;
   }
+  
   return ReactDOM.createPortal(
     <div onClick={toggleModal} className="modal">
       <div onClick={(e) => e.stopPropagation()}>{children}</div>

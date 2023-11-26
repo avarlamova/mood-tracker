@@ -1,16 +1,16 @@
 .monthContainer {
-  // display: flex;
-  display: grid;
-  grid-template-columns: 8% 92%;
+  display: flex;
+  // display: grid;
+  // grid-template-columns: 8% 92%;
   align-items: center;
   // align-items: center;
   // max-width: 100vw;
-  @media only screen and (max-width: 925px) {
-    grid-template-columns: 15% 85%;
-  }
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: 5% 95%;
-  }
+  // @media only screen and (max-width: 925px) {
+  //   grid-template-columns: 15% 85%;
+  // }
+  // @media only screen and (max-width: 600px) {
+  //   grid-template-columns: 5% 95%;
+  // }
 }
 // 925px
 .monthName {
@@ -18,7 +18,6 @@
   // flex: 0 0 10%;
   font-weight: 900;
   font-size: 14px;
-  color: #000000;
 
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {

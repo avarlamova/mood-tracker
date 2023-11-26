@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Month from "./Month";
+import './Year.scss';
 
 type YearProps = {
   year: string;
@@ -41,17 +42,31 @@ const Year: FC<YearProps> = ({ year }) => {
       <Month
         key={index}
         monthNum={index + 1}
-        name={month}
-        shortMonthName={shortMonthNames[index]}
       />
     );
   });
+
+  const monthNames = months.map((month, index) => {
+    return (
+      <div>
+        {month}
+      </div>
+    );
+  });
+
   return (
     <>
       <h1 style={{ display: "flex", justifyContent: "center" }}>
         Moods of {year}
       </h1>
-      <div>{renderedMonths}</div>
+      <div className="year">
+        <div className="monthNames">
+          {monthNames}
+        </div>
+        <div>
+          {renderedMonths}
+        </div>
+      </div>
     </>
   );
 };

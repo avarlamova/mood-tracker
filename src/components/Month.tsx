@@ -7,18 +7,18 @@ import useWindowSize from "../hooks/useWindowSize";
 import "./Month.scss";
 type MonthProps = {
   monthNum: number;
-  name: string;
-  shortMonthName: string;
+  // name: string;
+  // shortMonthName: string;
 };
 
-const Month: FC<MonthProps> = ({ monthNum, name, shortMonthName }) => {
+const Month: FC<MonthProps> = ({ monthNum }) => {
   const year = new Date().getFullYear();
-  const size = useWindowSize();
-  let isMobile = false;
+  // const size = useWindowSize();
+  // let isMobile = false;
 
-  if (size.width && size.width < 601) {
-    isMobile = true;
-  }
+  // if (size.width && size.width < 601) {
+  //   isMobile = true;
+  // }
 
   const daysInMonth = moment(year + "-" + monthNum, "YYYY-MM").daysInMonth();
 
@@ -39,7 +39,7 @@ const Month: FC<MonthProps> = ({ monthNum, name, shortMonthName }) => {
   return (
     <div>
       <div className="monthContainer">
-        <div className="monthName"> {isMobile ? shortMonthName : name} </div>
+        {/* <div className="monthName"> {isMobile ? shortMonthName : name} </div> */}
         <div className="daysContainer">{days}</div>
       </div>
     </div>
